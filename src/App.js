@@ -71,7 +71,7 @@ const Selector = ({ selectLang, lang, theme }) => {
 const App = () => {
 	const [content, setContent] = useState("// Create something awesome");
 	const [language, setLanguage] = useState(LANGUAGE[0]);
-	const [theme, setTheme] = useState(true);
+	const [theme, setTheme] = useState(false);
 
 	const handleContent = (e, value) => {
 		setContent(value);
