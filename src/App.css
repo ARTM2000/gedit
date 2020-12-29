@@ -1,79 +1,79 @@
 * {
-  outline: none;
+	outline: none;
 }
 
 .Main {
-  width: 100vw;
-  height: 98vh;
-  padding-top: 2vh;
-  overflow: unset;
+	width: 100vw;
+	height: 98vh;
+	padding-top: 2vh;
+	overflow: unset;
 }
 
 .EditorHolder {
-  height: 87%;
-  width: 100%;
+	height: 87%;
+	width: 100%;
 }
 
 .Editor {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .SettingHolder {
-  width: 100%;
-  height: 13%;
-  min-height: 70px;
+	width: 100%;
+	height: 13%;
+	min-height: 70px;
 }
 
 .Setting {
-  position: relative;
-  padding: 10px 25px;
+	position: relative;
+	padding: 10px 25px;
 }
 
 .SelectLangHolder {
-  position: relative;
-  display: inline-block;
-  width: 170px;
+	position: relative;
+	display: inline-block;
+	width: 170px;
 }
 
 .SelectLang {
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 10px 15px;
-  background-color: #9fa5ac;
-  height: 25px;
+	border-radius: 4px;
+	cursor: pointer;
+	padding: 10px 15px;
+	background-color: #9fa5ac;
+	height: 25px;
 }
 
 .Langs {
-  position: absolute;
-  left: 0;
-  bottom: 108%;
-  width: 152px;
-  height: auto;
-  max-height: 300px;
-  overflow-y: auto;
-  border-radius: 4px;
-  padding: 10px 8px;
-  background-color: #9fa5ac;
+	position: absolute;
+	left: 0;
+	bottom: 108%;
+	width: 152px;
+	height: auto;
+	max-height: 300px;
+	overflow-y: auto;
+	border-radius: 4px;
+	padding: 10px 8px;
+	background-color: #9fa5ac;
 }
 
 .Langs p {
-  margin: 1px 0;
-  padding: 8px 15px;
-  border-radius: 5px;
+	margin: 1px 0;
+	padding: 8px 15px;
+	border-radius: 5px;
 }
 .Langs p:hover {
-  background-color: lightgray;
-  cursor: pointer;
+	background-color: lightgray;
+	cursor: pointer;
 }
 
 .ThemeBTN {
-  padding: 14.3px 15px;
-  margin: 0 5px;
-  font-size: 14px;
-  width: 80px;
-  background-color: #9fa5ac;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+	padding: 14.3px 15px;
+	margin: 0 5px;
+	font-size: 14px;
+	width: 80px;
+	background-color: #9fa5ac;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
