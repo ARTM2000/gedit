@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { ControlledEditor } from "@monaco-editor/react";
+import React, { useRef, useState } from "react";
+import { Editor } from "@monaco-editor/react";
 
 import "./App.css";
 
 const LANGUAGE = [
+	"plaintext",
 	"javascript",
 	"html",
 	"css",
@@ -34,7 +35,6 @@ const LANGUAGE = [
 	"swift",
 	"coffeescript",
 	"kotlin",
-	"plaintext",
 	"vb",
 ];
 
@@ -72,17 +72,22 @@ const App = () => {
 	const [content, setContent] = useState("// Create something awesome");
 	const [language, setLanguage] = useState(LANGUAGE[0]);
 	const [theme, setTheme] = useState(false);
+	const editorRef = useRef(null);
 
 	const handleContent = (e, value) => {
 		setContent(value);
 	};
 
-	const handleLang = (e) => {
-		setLanguage(e.target.value);
+	const handleLang = (value) => {
+		setLanguage(value);
 	};
 
 	const handleTheme = () => {
 		setTheme(!theme);
+	};
+
+	const handleEditorDidMount = (editor, monaco) => {
+		editorRef.current = editor;
 	};
 
 	return (
@@ -91,15 +96,14 @@ const App = () => {
 			style={{ backgroundColor: theme ? "#FFFFFE" : "#202124" }}
 		>
 			<div className="EditorHolder">
-				<ControlledEditor
-					value={content}
-					className={"Editor"}
-					language={language}
+				<Editor
+					height="90vh"
+					defaultLanguage="javascript"
+					defaultValue={content}
+					onMount={handleEditorDidMount}
 					onChange={handleContent}
-					theme={theme ? "light" : "dark"}
-					loading={
-						<h1 style={{ color: theme ? "gray" : "white" }}>Waiting...</h1>
-					}
+					language={language}
+					theme={theme ? "light" : "vs-dark"}
 				/>
 			</div>
 			<div
@@ -107,7 +111,7 @@ const App = () => {
 				style={{ backgroundColor: theme ? "#C9C9C8" : "#1E1E1E" }}
 			>
 				<div className="Setting">
-					<Selector selectLang={(lang) => setLanguage(lang)} lang={language} />
+					<Selector selectLang={handleLang} lang={language} />
 					<button className="ThemeBTN" onClick={handleTheme}>
 						{theme ? "dark" : "light"}
 					</button>
