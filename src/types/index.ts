@@ -40,7 +40,6 @@ export type Language = typeof LANGUAGE[number];
 export interface SelectorProps {
 	selectLang: (lang: Language) => void;
 	lang: Language;
-	theme?: boolean;
 }
 
 // Web Vitals type

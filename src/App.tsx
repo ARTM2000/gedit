@@ -4,7 +4,7 @@ import { LANGUAGE, type Language, type SelectorProps } from "./types";
 
 import "./App.css";
 
-const Selector: React.FC<SelectorProps> = ({ selectLang, lang, theme }) => {
+const Selector: React.FC<SelectorProps> = ({ selectLang, lang }) => {
 	const [showList, setShowList] = useState<boolean>(false);
 
 	const handleLangList = (): void => {
@@ -28,7 +28,7 @@ const Selector: React.FC<SelectorProps> = ({ selectLang, lang, theme }) => {
 				</div>
 			)}
 			<div className="SelectLang" onClick={handleLangList}>
-				{lang}
+				<span style={{ display: "block", paddingTop: "2px" }}>{lang}</span>
 			</div>
 		</div>
 	);
@@ -37,7 +37,7 @@ const Selector: React.FC<SelectorProps> = ({ selectLang, lang, theme }) => {
 const App: React.FC = () => {
 	const [content, setContent] = useState<string>("// Create something awesome");
 	const [language, setLanguage] = useState<Language>(LANGUAGE[0]);
-	const [theme, setTheme] = useState<boolean>(false);
+	const [lightTheme, setLightTheme] = useState<boolean>(false);
 	const editorRef = useRef<any>(null);
 
 	const handleContent = (value: string | undefined): void => {
@@ -51,7 +51,7 @@ const App: React.FC = () => {
 	};
 
 	const handleTheme = (): void => {
-		setTheme(!theme);
+		setLightTheme(!lightTheme);
 	};
 
 	const handleEditorDidMount = (
@@ -64,7 +64,7 @@ const App: React.FC = () => {
 	return (
 		<div
 			className="Main"
-			style={{ backgroundColor: theme ? "#FFFFFE" : "#202124" }}
+			style={{ backgroundColor: lightTheme ? "#FFFFFE" : "#1E1E1E" }}
 		>
 			<div className="EditorHolder">
 				<Editor
@@ -75,17 +75,17 @@ const App: React.FC = () => {
 					value={content}
 					onChange={handleContent}
 					language={language}
-					theme={theme ? "light" : "vs-dark"}
+					theme={lightTheme ? "light" : "vs-dark"}
 				/>
 			</div>
 			<div
 				className="SettingHolder"
-				style={{ backgroundColor: theme ? "#C9C9C8" : "#1E1E1E" }}
+				style={{ backgroundColor: lightTheme ? "#C9C9C8" : "#1E1E1E" }}
 			>
 				<div className="Setting">
 					<Selector selectLang={handleLang} lang={language} />
 					<button className="ThemeBTN" onClick={handleTheme}>
-						{theme ? "dark" : "light"}
+						{lightTheme ? "dark" : "light"}
 					</button>
 				</div>
 			</div>
