@@ -75,12 +75,17 @@ const App: React.FC = () => {
 					value={content}
 					onChange={handleContent}
 					language={language}
+					loading={
+						<h3 style={{ color: lightTheme ? "gray" : "white" }}>
+							Loading Editor...
+						</h3>
+					}
 					theme={lightTheme ? "light" : "vs-dark"}
 				/>
 			</div>
 			<div
 				className="SettingHolder"
-				style={{ backgroundColor: lightTheme ? "#C9C9C8" : "#1E1E1E" }}
+				style={{ backgroundColor: lightTheme ? "#C9C9C8" : "#232323" }}
 			>
 				<div className="Setting">
 					<Selector selectLang={handleLang} lang={language} />
