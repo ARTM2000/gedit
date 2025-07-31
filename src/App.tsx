@@ -1,51 +1,17 @@
 import React, { useRef, useState } from "react";
-import { Editor } from "@monaco-editor/react";
+import { Editor, type Monaco } from "@monaco-editor/react";
+import { LANGUAGE, type Language, type SelectorProps } from "./types";
 
 import "./App.css";
 
-const LANGUAGE = [
-	"plaintext",
-	"javascript",
-	"html",
-	"css",
-	"typescript",
-	"json",
-	"less",
-	"scss",
-	"mysql",
-	"sql",
-	"pgsql",
-	"c",
-	"cpp",
-	"java",
-	"csharp",
-	"dart",
-	"dockerfile",
-	"go",
-	"graphql",
-	"markdown",
-	"php",
-	"perl",
-	"objective-c",
-	"python",
-	"rust",
-	"ruby",
-	"rust",
-	"shell",
-	"swift",
-	"coffeescript",
-	"kotlin",
-	"vb",
-];
+const Selector: React.FC<SelectorProps> = ({ selectLang, lang, theme }) => {
+	const [showList, setShowList] = useState<boolean>(false);
 
-const Selector = ({ selectLang, lang, theme }) => {
-	const [showList, setShowList] = useState(false);
-
-	const handleLangList = () => {
+	const handleLangList = (): void => {
 		setShowList(!showList);
 	};
 
-	const onSelectLang = (selectedLang) => {
+	const onSelectLang = (selectedLang: Language): void => {
 		selectLang(selectedLang);
 		handleLangList();
 	};
@@ -68,25 +34,30 @@ const Selector = ({ selectLang, lang, theme }) => {
 	);
 };
 
-const App = () => {
-	const [content, setContent] = useState("// Create something awesome");
-	const [language, setLanguage] = useState(LANGUAGE[0]);
-	const [theme, setTheme] = useState(false);
-	const editorRef = useRef(null);
+const App: React.FC = () => {
+	const [content, setContent] = useState<string>("// Create something awesome");
+	const [language, setLanguage] = useState<Language>(LANGUAGE[0]);
+	const [theme, setTheme] = useState<boolean>(false);
+	const editorRef = useRef<any>(null);
 
-	const handleContent = (e, value) => {
-		setContent(value);
+	const handleContent = (value: string | undefined): void => {
+		if (value !== undefined) {
+			setContent(value);
+		}
 	};
 
-	const handleLang = (value) => {
+	const handleLang = (value: Language): void => {
 		setLanguage(value);
 	};
 
-	const handleTheme = () => {
+	const handleTheme = (): void => {
 		setTheme(!theme);
 	};
 
-	const handleEditorDidMount = (editor, monaco) => {
+	const handleEditorDidMount = (
+		editor: any,
+		monaco: Monaco
+	): void => {
 		editorRef.current = editor;
 	};
 
@@ -101,6 +72,7 @@ const App = () => {
 					defaultLanguage="javascript"
 					defaultValue={content}
 					onMount={handleEditorDidMount}
+					value={content}
 					onChange={handleContent}
 					language={language}
 					theme={theme ? "light" : "vs-dark"}
